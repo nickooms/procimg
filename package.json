@@ -1,0 +1,31 @@
+{
+  "name": "image-processing",
+  "version": "1.0.0",
+  "description": "Canvas based image processing library",
+  "main": "lib/image-processing.js",
+  "scripts": {
+    "prepublish": "./node_modules/.bin/babel -d lib src/",
+    "test": "mocha --compilers js:babel-core/register"
+  },
+  "keywords": [
+    "image",
+    "processing",
+    "canvas"
+  ],
+  "author": "Nick Ooms",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0"
+  },
+  "dependencies": {
+    "canvas": "^1.3.10",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "es6-promise": "^3.1.2",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "sinon-as-promised": "^4.0.0"
+  }
+}
