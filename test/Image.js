@@ -63,7 +63,7 @@ describe('Promises', function() {
 			const stub = sinon.stub();
 			stub.resolves(length);
 			const buffer = Image.load(filename);
-			return expect(buffer).to.become(length);
+			return expect(buffer).to.eventually.have.property('filesize', length);
 		});
 
 		it('return a rejected promise', function() {
