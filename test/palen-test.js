@@ -47,7 +47,7 @@ describe(`${LAYER} LAYER`, function() {
 	it(`replaces brown`, function() {
 		const brown = 4279520408;
 		const colors = loadedImage.then(image => {
-			image.replace(brown, brown, 72);
+			image.replace(brown, 0xffff0000, 50);
 			const colors = image.colors;
 			fs.writeFileSync('test/output/replaced-brown.html', Image.html(colors));
 			return colors;
@@ -55,10 +55,10 @@ describe(`${LAYER} LAYER`, function() {
 		return expect(colors).to.eventually.have.property('length', 46);
 	});
 
-	it(`replaces purple`, function() {
+	it(`replaces white`, function() {
 		const white = 4294638330;
 		const colors = loadedImage.then(image => {
-			image.replace(white, white, 50);
+			image.replace(white, 0xffffffff, 20);
 			const colors = image.colors;
 			fs.writeFileSync('test/output/replaced-white.html', Image.html(colors));
 			return colors;
@@ -66,15 +66,24 @@ describe(`${LAYER} LAYER`, function() {
 		return expect(colors).to.eventually.have.property('length', 26);
 	});
 
-	it(`replaces purple`, function() {
+	it(`replaces pink`, function() {
 		const pink = 4288086231;
 		const colors = loadedImage.then(image => {
-			image.replace(pink, pink, 50);
+			image.replace(pink, 0xff00ff00, 30);
 			const colors = image.colors;
 			fs.writeFileSync('test/output/replaced-pink.html', Image.html(colors));
 			return colors;
 		});
 		return expect(colors).to.eventually.have.property('length', 4);
+	});
+
+	it(`saves`, function() {
+
+		const saved = loadedImage.then(image => {
+			image.save('test/output/out.png');
+			return { saved: true };
+		});
+		return expect(saved).to.eventually.have.property('saved', true);
 	});
 
 });

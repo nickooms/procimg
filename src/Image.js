@@ -87,6 +87,10 @@ class Image {
 		return new Uint32Array(this.data.buffer);
 	}
 
+	save(filename) {
+		fs.writeFileSync(filename, this.canvas.toBuffer(), 'binary');
+	}
+
 	replace(color, newColor, maxDeviation) {
 		maxDeviation = maxDeviation || 10;
 		const colors = this.colors;
@@ -105,7 +109,7 @@ class Image {
 				data[i] = newColor;
 			}
 		}
-		console.log('replaced', replaced);
+		//console.log('replaced', replaced);
 		this.context.putImageData(imageData, 0, 0);
 	}
 
